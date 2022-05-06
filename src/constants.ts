@@ -7,7 +7,7 @@ const Constants = {
     BASE: 'http://gateway.marvel.com/v1/public',
     COMICS: '/comics',
   },
-  API_KEY: '8a236d2eb767263c5f1154cc12a3d7bd'
+  API_KEY: 'CHANGE_TO_YOUR_MARVEL_API_KEY'
 };
 
 export default Constants;
