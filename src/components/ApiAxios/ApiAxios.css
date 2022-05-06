@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.loading {
+  font-size: 40px;
+}
+
+.images {
+  width: 30%;
+}
+
+img {
+  width: 300px;
+}

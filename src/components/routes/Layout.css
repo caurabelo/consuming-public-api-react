@@ -1,0 +1,18 @@
+.header {
+  text-align: center;
+}
+
+nav {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+}
+
+a:visited {
+  color: white;
+}
+
+a:first-child {
+  margin-right: 20px;
+}
