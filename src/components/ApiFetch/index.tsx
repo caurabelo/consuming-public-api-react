@@ -10,6 +10,7 @@ function ApiFetch() {
   };
 
   let [loading, setLoading] = useState<boolean>(true);
+  let [error, setError] = useState<boolean>(false);
   let [filteredComics, setFilteredComics] = useState<Comics>([]);
 
   type Image = { path: string, extension: string };
@@ -59,13 +60,14 @@ function ApiFetch() {
       })
       .then((data) => {
         setLoading(false);
+        setError(false);
         if (data.data) {
           setFilteredComics(filterComicsWithImages(data.data.results));
         }
       })
       .catch((error) => {
         setLoading(false);
-        console.log(">>>>>ERROR", error);
+        setError(true);
       });
   }, []);
 
@@ -73,7 +75,8 @@ function ApiFetch() {
     <div className="App">
       <h3>API Fetch</h3>
       <div className="content">
-        {loading ? <div className='loading'>Loading...</div>: ''}
+        {loading ? <div className="loading">Loading...</div> : ""}
+        {error ? <div className="loading">ERROR</div> : ""}
         {filteredComics?.map((element) => showImages(element))}
       </div>
     </div>

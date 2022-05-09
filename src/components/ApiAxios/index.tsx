@@ -11,6 +11,7 @@ function ApiAxios() {
   };
 
   let [loading, setLoading] = useState<boolean>(true);
+  let [error, setError] = useState<boolean>(false);
   let [filteredComics, setFilteredComics] = useState<Comics>([]);
 
   type Image = { path: string; extension: string };
@@ -48,7 +49,7 @@ function ApiAxios() {
 
     // String interpolation, it is the same as:
     // const ulr = Constants.API_ROUTES.BASE + Constants.API_ROUTES.COMICS;
-    const url = `${Constants.API_ROUTES.BASE}${Constants.API_ROUTES.COMICS}`;
+    const url = `${Constants.API_ROUTES.BASE}${Constants.API_ROUTES.COMICS}1`;
 
     const options = {
       params: urlParams,
@@ -59,13 +60,14 @@ function ApiAxios() {
       .get(url, options)
       .then((res) => {
         setLoading(false);
+        setError(false);
         if (res.data.data) {
           setFilteredComics(filterComicsWithImages(res.data.data.results));
         }
       })
       .catch((error) => {
         setLoading(false);
-        console.log(">>>>>ERROR", error);
+        setError(true);
       });
   }, []);
 
@@ -74,6 +76,7 @@ function ApiAxios() {
       <h3>API Axios</h3>
       <div className="content">
         {loading ? <div className="loading">Loading...</div> : ""}
+        {error ? <div className="loading">ERROR</div> : ""}
         {filteredComics?.map((element) => showImages(element))}
       </div>
     </div>
