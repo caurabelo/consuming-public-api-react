@@ -49,7 +49,7 @@ function ApiAxios() {
 
     // String interpolation, it is the same as:
     // const ulr = Constants.API_ROUTES.BASE + Constants.API_ROUTES.COMICS;
-    const url = `${Constants.API_ROUTES.BASE}${Constants.API_ROUTES.COMICS}1`;
+    const url = `${Constants.API_ROUTES.BASE}${Constants.API_ROUTES.COMICS}`;
 
     const options = {
       params: urlParams,
