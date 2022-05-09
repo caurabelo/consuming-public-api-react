@@ -6,7 +6,7 @@ import axios from "axios";
 function ApiAxios() {
   const getHeaders = () => {
     return {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     };
   };
 
@@ -40,16 +40,23 @@ function ApiAxios() {
   };
 
   useEffect(() => {
+    const urlParams = new URLSearchParams({
+      apikey: Constants.API_KEY,
+      limit: "40",
+      noVariants: "true",
+    });
+
+    // String interpolation, it is the same as:
+    // const ulr = Constants.API_ROUTES.BASE + Constants.API_ROUTES.COMICS + '?' + urlParams;
+    const url = `${Constants.API_ROUTES.BASE}${Constants.API_ROUTES.COMICS}`;
+
     const options = {
-      headers: getHeaders(),
+      params: urlParams,
+      headers: getHeaders()
     };
 
-    axios(
-      Constants.API_ROUTES.BASE +
-        Constants.API_ROUTES.COMICS +
-        `?apikey=${Constants.API_KEY}&limit=40&noVariants=true`,
-      options
-    )
+    axios
+      .get(url, options)
       .then((res) => {
         setLoading(false);
         if (res.data.data) {
@@ -57,6 +64,7 @@ function ApiAxios() {
         }
       })
       .catch((error) => {
+        setLoading(false);
         console.log(">>>>>ERROR", error);
       });
   }, []);

@@ -39,19 +39,23 @@ function ApiFetch() {
   };
 
   useEffect(() => {
+    const urlParams = new URLSearchParams({
+      apikey: Constants.API_KEY,
+      limit: "40",
+      noVariants: "true",
+    });
+
+    // String interpolation, it is the same as:
+    // const ulr = Constants.API_ROUTES.BASE + Constants.API_ROUTES.COMICS + '?' + urlParams;
+    const url = `${Constants.API_ROUTES.BASE}${Constants.API_ROUTES.COMICS}?${urlParams}`;
+
     const options = {
       headers: getHeaders(),
     };
 
-    fetch(
-      Constants.API_ROUTES.BASE +
-        Constants.API_ROUTES.COMICS +
-        `?apikey=${Constants.API_KEY}&limit=40&noVariants=true`,
-      options
-    )
+    fetch(url, options)
       .then((res) => {
         return res.json();
-
       })
       .then((data) => {
         setLoading(false);
@@ -60,6 +64,7 @@ function ApiFetch() {
         }
       })
       .catch((error) => {
+        setLoading(false);
         console.log(">>>>>ERROR", error);
       });
   }, []);
