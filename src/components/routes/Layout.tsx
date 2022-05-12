@@ -9,15 +9,12 @@ function Layout() {
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
       <nav>
-        <Link to={Constants.PATHS.API_FETCH}>API GET using Fetch</Link>
-        <Link to={Constants.PATHS.API_AXIOS}>API GET using Axios</Link>
+        <Link to={Constants.PATHS.API_CRUD}>API CrudCrud</Link>
+        <Link to={Constants.PATHS.API_FETCH}>API Marvel GET using Fetch</Link>
+        <Link to={Constants.PATHS.API_AXIOS}>API Marvel GET using Axios</Link>
       </nav>
 
       <hr />
-
-      <header className="header">
-        <h1>Random Marvel Comics</h1>
-      </header>
 
       {/* An <Outlet> renders whatever child route is currently active,
           so you can think about this <Outlet> as a placeholder for

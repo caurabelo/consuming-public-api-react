@@ -9,10 +9,10 @@ nav {
   justify-content: center;
 }
 
-a:visited {
+a:visited, a {
   color: white;
 }
 
-a:first-child {
+a:not(last-child) {
   margin-right: 20px;
 }

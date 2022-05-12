@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './ApiFetch.css';
 import Constants from '../../constants';
+import { Comic, Comics } from '../../models/comics';
 
 function ApiFetch() {
   const getHeaders = () => {
@@ -12,12 +13,6 @@ function ApiFetch() {
   let [loading, setLoading] = useState<boolean>(true);
   let [error, setError] = useState<boolean>(false);
   let [filteredComics, setFilteredComics] = useState<Comics>([]);
-
-  type Image = { path: string, extension: string };
-
-  type Comic = { images: Image[]; title: string, id: number };
-
-  type Comics = Comic[];
 
   const filterComicsWithImages = (comics: Comics) => {
     return comics.filter(comic => comic.images.length > 0);
@@ -48,7 +43,7 @@ function ApiFetch() {
 
     // String interpolation, it is the same as:
     // const ulr = Constants.API_ROUTES.BASE + Constants.API_ROUTES.COMICS + '?' + urlParams;
-    const url = `${Constants.API_ROUTES.BASE}${Constants.API_ROUTES.COMICS}?${urlParams}`;
+    const url = `${Constants.API_ROUTES.BASE_MARVEL}${Constants.API_ROUTES.COMICS}?${urlParams}`;
 
     const options = {
       headers: getHeaders(),
@@ -73,6 +68,9 @@ function ApiFetch() {
 
   return (
     <div className="App">
+      <header className="header">
+        <h1>Random Marvel Comics</h1>
+      </header>
       <h3>API Fetch</h3>
       <div className="content">
         {loading ? <div className="loading">Loading...</div> : ""}

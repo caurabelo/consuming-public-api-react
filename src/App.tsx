@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ApiFetch from './components/ApiFetch';
 import ApiAxios from './components/ApiAxios';
 import Layout from './components/routes/Layout';
+import ApiCrud from './components/ApiCrud';
 
 function App() {
 
@@ -11,7 +12,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="" element={<ApiFetch />} />
+            <Route path="" element={<ApiCrud />} />
+            <Route path="apiFetch" element={<ApiFetch />} />
             <Route path="apiAxios" element={<ApiAxios />} />
             <Route
               path="*"
